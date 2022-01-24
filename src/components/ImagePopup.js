@@ -1,6 +1,6 @@
 import xButton from '../images/x-button.svg'
 
-function PopupImage({ card, onClose }) {
+function ImagePopup({ card, onClose }) {
 
   return (
     <div className={`modal ${card && 'modal_open'}`} id="img">
@@ -15,4 +15,4 @@ function PopupImage({ card, onClose }) {
   )
 }
 
-export default PopupImage
+export default ImagePopup

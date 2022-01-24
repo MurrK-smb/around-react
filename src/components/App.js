@@ -3,7 +3,7 @@ import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 import PopupWithForm from './PopupWithForm'
-import PopupImage from './PopupImage'
+import ImagePopup from './ImagePopup'
 import '../pages/index.css';
 
 function App() {
@@ -82,7 +82,7 @@ function App() {
         <button className="form__submit" id="delete-submit" type="submit">Yes</button>
       </PopupWithForm>
 
-      <PopupImage card={selectedCard} onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }
