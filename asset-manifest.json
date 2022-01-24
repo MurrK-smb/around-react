@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/around-react/static/css/main.afabc6af.css",
+    "main.js": "/around-react/static/js/main.02a65fbd.js",
+    "static/js/787.1c78f32b.chunk.js": "/around-react/static/js/787.1c78f32b.chunk.js",
+    "static/media/Inter-Medium.woff": "/around-react/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-Black.woff": "/around-react/static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff": "/around-react/static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/around.svg": "/around-react/static/media/around.4e8e0a1d604782a0dff8e5b1a5441e4d.svg",
+    "static/media/heart.svg": "/around-react/static/media/heart.3826c074a1b94b101e38.svg",
+    "index.html": "/around-react/index.html",
+    "static/media/trash.svg": "/around-react/static/media/trash.8cb59aa98088a1653f62.svg",
+    "static/media/heart_filled.svg": "/around-react/static/media/heart_filled.226461bd64622361ffb2.svg",
+    "static/media/x-button.svg": "/around-react/static/media/x-button.1f0b5bb9b7f510e19098a3ca6de1cdc3.svg",
+    "static/media/edit.svg": "/around-react/static/media/edit.8667ac4a523e8fc42e59641845fc8448.svg",
+    "static/media/add.svg": "/around-react/static/media/add.d86bb2edc2f6eadb96b785d29c82b56e.svg",
+    "main.afabc6af.css.map": "/around-react/static/css/main.afabc6af.css.map",
+    "main.02a65fbd.js.map": "/around-react/static/js/main.02a65fbd.js.map",
+    "787.1c78f32b.chunk.js.map": "/around-react/static/js/787.1c78f32b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.afabc6af.css",
+    "static/js/main.02a65fbd.js"
+  ]
+}
