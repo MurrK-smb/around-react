@@ -1,6 +1,7 @@
 
 .profile {
   height: 120px;
+  margin: 40px 0 0;
   display: grid;
   grid-template-columns: auto 1fr auto;
   column-gap: 30px;

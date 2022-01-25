@@ -1,9 +1,9 @@
 
 .content {
   max-width: 880px;
+  margin: 0 auto;
   padding: 45px 19px 60px;
   box-sizing: content-box;
-  margin: 0 auto;
   background-color: black;
   font-family: Inter, Helvetica;
 }
