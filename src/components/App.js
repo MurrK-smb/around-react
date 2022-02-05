@@ -4,6 +4,7 @@ import Main from './Main'
 import Footer from './Footer'
 import PopupWithForm from './PopupWithForm'
 import ImagePopup from './ImagePopup'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import '../pages/index.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
   const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(undefined)
+  const [currentUser, setCurrentUser] = React.useState('')
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true)
@@ -44,42 +46,44 @@ function App() {
 
   return (
     <div className="root">
-      <div className="content">
-        <Header />
+      <CurrentUserContext.Provider value={currentUser}>
+        <div className="content">
+          <Header />
 
-        <Main 
-          onEditAvatarClick={handleEditAvatarClick}
-          onEditProfileClick={handleEditProfileClick}
-          onAddPlaceClick={handleAddPlaceClick}
-          onCardClick={handleCardClick}
-          onDeleteClick={handleDeleteClick}
-        />
-        
-        <Footer />
+          <Main 
+            onEditAvatarClick={handleEditAvatarClick}
+            onEditProfileClick={handleEditProfileClick}
+            onAddPlaceClick={handleAddPlaceClick}
+            onCardClick={handleCardClick}
+            onDeleteClick={handleDeleteClick}
+          />
+          
+          <Footer />
 
-        <PopupWithForm id={"edit"} title={"Edit Profile"} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} formId={"edit-form"} buttonText={"Save"}>
-          <input className="form__input" id="form-name" type="text" name="name" autoComplete="off" required minLength="2" maxLength="40"/>
-          <span className="form__validation" id="form-name-error"></span>
-          <input className="form__input" id="form-caption" type="text" name="about" autoComplete="off" required minLength="2" maxLength="200"/>
-          <span className="form__validation" id="form-caption-error"></span>
-        </PopupWithForm>
+          <PopupWithForm id={"edit"} title={"Edit Profile"} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} formId={"edit-form"} buttonText={"Save"}>
+            <input className="form__input" id="form-name" type="text" name="name" autoComplete="off" required minLength="2" maxLength="40"/>
+            <span className="form__validation" id="form-name-error"></span>
+            <input className="form__input" id="form-caption" type="text" name="about" autoComplete="off" required minLength="2" maxLength="200"/>
+            <span className="form__validation" id="form-caption-error"></span>
+          </PopupWithForm>
 
-        <PopupWithForm id={"add"} title={"New Place"} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} formId={"add-form"} buttonText={"Create"}>
-          <input className="form__input" id="form-title" type="text" name="name" placeholder="Name" autoComplete="off" required minLength="2" maxLength="30"/>
-          <span className="form__validation" id="form-title-error"></span>
-          <input className="form__input" id="form-link" type="url" name="link" placeholder="Image link" autoComplete="off" required/>
-          <span className="form__validation" id="form-link-error"></span>
-        </PopupWithForm>
+          <PopupWithForm id={"add"} title={"New Place"} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} formId={"add-form"} buttonText={"Create"}>
+            <input className="form__input" id="form-title" type="text" name="name" placeholder="Name" autoComplete="off" required minLength="2" maxLength="30"/>
+            <span className="form__validation" id="form-title-error"></span>
+            <input className="form__input" id="form-link" type="url" name="link" placeholder="Image link" autoComplete="off" required/>
+            <span className="form__validation" id="form-link-error"></span>
+          </PopupWithForm>
 
-        <PopupWithForm id={"edit-avatar"} title={"Change Profile"} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} formId={"edit-avatar-form"} buttonText={"Save"}>
-          <input type="url" className="form__input" id="form-avatar" name="avatar" placeholder="Image link" required/>
-          <span className="form__validation" id="form-avatar-error"></span>
-        </PopupWithForm>
+          <PopupWithForm id={"edit-avatar"} title={"Change Profile"} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} formId={"edit-avatar-form"} buttonText={"Save"}>
+            <input type="url" className="form__input" id="form-avatar" name="avatar" placeholder="Image link" required/>
+            <span className="form__validation" id="form-avatar-error"></span>
+          </PopupWithForm>
 
-        <PopupWithForm id={"delete"} title={"Are You Sure?"} isOpen={isDeletePopupOpen} onClose={closeAllPopups} formId={"delete-form"} buttonText={"Yes"} />
+          <PopupWithForm id={"delete"} title={"Are You Sure?"} isOpen={isDeletePopupOpen} onClose={closeAllPopups} formId={"delete-form"} buttonText={"Yes"} />
 
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-      </div>
+          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        </div>
+      </CurrentUserContext.Provider>
     </div>
   )
 }
