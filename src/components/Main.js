@@ -1,24 +1,12 @@
 import React from 'react'
 import Card from './Card'
-import { api } from '../utils/api'
 import edit from '../images/edit.svg'
 import add from '../images/add.svg'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
-function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick, onCardClick, onDeleteClick }) {
+function Main({ cards, onEditAvatarClick, onEditProfileClick, onAddPlaceClick, onCardClick, onCardLike, onDeleteClick }) {
 
   const currentUser = React.useContext(CurrentUserContext)
-  const [cards, setCards] = React.useState([])
-
-  React.useEffect(() => {
-    api.getCardList()
-      .then((data) => {
-          setCards(data)
-      })
-      .catch((err) => {
-          console.log(err);
-      })
-  }, [])
 
   return (
     <main className="main">
@@ -42,7 +30,9 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick, onCardCl
       </section>
 
       <section className="cards">
-        {cards.map((card) => (<Card key={card._id} card={card} onCardClick={onCardClick} onDeleteClick={onDeleteClick}/>))}
+        {cards.map((card) => (
+          <Card key={card._id} card={card} onCardClick={onCardClick} onDeleteClick={onDeleteClick} onCardLike={onCardLike} />
+        ))}
       </section>
     </main>
   )

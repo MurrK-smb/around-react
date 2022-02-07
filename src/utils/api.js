@@ -50,20 +50,25 @@ class Api {
   }
 
   // Edits user's name and job
-  editProfile(profileData) {
+  editProfile({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify(profileData)
+      body: JSON.stringify({
+        name,
+        about
+      })
     }).then(res => this._checkResponse(res))
   }
 
   // Edits user's profile pic url
-  editAvatar(avatar) {
+  editAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify(avatar)
+      body: JSON.stringify({
+        avatar
+      })
     }).then(res => this._checkResponse(res))
   }
 
