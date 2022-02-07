@@ -85,4 +85,4 @@ class Api {
 
 const api = new Api(apiConfig)
 
-export { api }
+export default api

@@ -8,8 +8,8 @@ import AddPlacePopup from './AddPlacePopup'
 import EditAvatarPopup from './EditAvatarPopup'
 import ImagePopup from './ImagePopup'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import '../pages/index.css';
-import { api } from '../utils/api'
+import '../index.css';
+import api from '../utils/api'
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false)
