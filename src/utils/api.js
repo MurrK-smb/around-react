@@ -33,18 +33,10 @@ class Api {
       .then(res => this._checkResponse(res))
   }
 
-  // Adds user's id to list of likes
-  addLike(userId) {
-    return fetch(`${this._baseUrl}/cards/likes/${userId}`, {
-      method: 'PUT',
-      headers: this._headers
-    }).then(res => this._checkResponse(res))
-  }
-
-  // Eemoves user's id from list of likes
-  removeLike(userId) {
-    return fetch(`${this._baseUrl}/cards/likes${userId}`, {
-      method: 'DELETE',
+  // Adds and removes user's id from list of likes
+  toggleLike({ cardId, isLiked }) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: isLiked ? 'DELETE' : 'PUT',
       headers: this._headers
     }).then(res => this._checkResponse(res))
   }
@@ -63,11 +55,11 @@ class Api {
 
   // Edits user's profile pic url
   editAvatar({ avatar }) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar
+        avatar: avatar
       })
     }).then(res => this._checkResponse(res))
   }

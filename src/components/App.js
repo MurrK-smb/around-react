@@ -51,17 +51,12 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(like => like._id === currentUser._id)
-    function setCardState(newCard) {
-      setCards(state => state.map(c => c._id === card._id ? newCard : c))
-    }
-    if (isLiked) {
-      api.addLike(currentUser._id)
-        .then(newCard => setCardState(newCard))
-    } 
-    else {
-      api.removeLike(currentUser._id)
-        .then(newCard => setCardState(newCard))
-    }
+    
+    api.toggleLike({ cardId: card._id, isLiked })
+      .then(newCard => {
+        setCards(state => state.map(item => item._id === card._id ? newCard : item))
+      })
+      .catch(err => console.log(err))
   }
 
   function handleCardDelete(card) {
