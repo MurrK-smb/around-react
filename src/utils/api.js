@@ -25,7 +25,7 @@ class Api {
   }
 
   // Removes card data from card list
-  deleteCard(cardId) {
+  deleteCard({ cardId }) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers

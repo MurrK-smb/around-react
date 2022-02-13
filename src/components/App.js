@@ -6,6 +6,7 @@ import PopupWithForm from './PopupWithForm'
 import EditProfilePopup from './EditProfilePopup'
 import AddPlacePopup from './AddPlacePopup'
 import EditAvatarPopup from './EditAvatarPopup'
+import DeletePopup from './DeletePopup'
 import ImagePopup from './ImagePopup'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import '../index.css';
@@ -17,6 +18,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
   const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(undefined)
+  const [selectedDeleteCard, setSelectedDeleteCard] = React.useState(undefined)
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([])
 
@@ -45,25 +47,16 @@ function App() {
     setSelectedCard(card)
   }
 
-  function handleDeleteClick() {
+  function handleDeleteClick(card) {
     setIsDeletePopupOpen(true)
+    setSelectedDeleteCard(card)
   }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(like => like._id === currentUser._id)
-    
     api.toggleLike({ cardId: card._id, isLiked })
       .then(newCard => {
         setCards(state => state.map(item => item._id === card._id ? newCard : item))
-      })
-      .catch(err => console.log(err))
-  }
-
-  function handleCardDelete(card) {
-    api.deleteCard(card._id)
-      .then(() => {
-        setCards(list => list.filter(item => item._id !== card._id))
-        closeAllPopups()
       })
       .catch(err => console.log(err))
   }
@@ -90,6 +83,15 @@ function App() {
     api.editAvatar({ avatar: currentUser.avatar })
       .then(info => {
         setCurrentUser(info)
+        closeAllPopups()
+      })
+      .catch(err => console.log(err))
+  }
+
+  function handleDeleteCard(card) {
+    api.deleteCard({ cardId: card._id })
+      .then(() => {
+        setCards(state => state.filter(item => item._id !== card._id))
         closeAllPopups()
       })
       .catch(err => console.log(err))
@@ -127,7 +129,7 @@ function App() {
 
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
-          <PopupWithForm id={"delete"} title={"Are You Sure?"} isOpen={isDeletePopupOpen} onClose={closeAllPopups} formId={"delete-form"} buttonText={"Yes"} onCardDelete={handleCardDelete} />
+          <DeletePopup isOpen={isDeletePopupOpen} onClose={closeAllPopups} onDeleteCard={handleDeleteCard} card={selectedDeleteCard} />
 
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>
