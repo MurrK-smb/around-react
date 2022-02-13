@@ -105,6 +105,16 @@ function App() {
     setSelectedCard(undefined)
   }
 
+  React.useEffect(() => {
+    function closeByEscape(e) {
+      if (e.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    document.addEventListener('keydown', closeByEscape)
+    return () => document.removeEventListener('keydown', closeByEscape)
+  }, [])
+
   return (
     <div className="root">
       <CurrentUserContext.Provider value={currentUser}>
